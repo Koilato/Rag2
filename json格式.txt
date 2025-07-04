@@ -1,0 +1,36 @@
+
+
+{
+  "user_query": "请统计主机IP为192.168.1.100且风险等级为高或端口为80的漏洞数",
+  "overall_intent": "aggregation",
+  "execution_plan": [
+    {
+      "step_id": "s1_count_filtered_vulnerabilities",
+      "step_type": "aggregate_mysql",
+      "description": "统计满足主机、风险和端口条件的漏洞数量",
+      "inputs": {
+        "filter_conditions": {
+          "$and": [
+            { "field": "host", "operator": "$eq", "value": "192.168.1.100" },
+            {
+              "$or": [
+                { "field": "risk_level", "operator": "$eq", "value": "high" },
+                { "field": "port", "operator": "$eq", "value": 80 }
+              ]
+            }
+          ]
+        },
+        "aggregation_tasks": [
+          {
+            "type": "count",
+            "field": null,
+            "group_by": null
+          }
+        ]
+      },
+      "outputs": {
+        "total_count": "integer"
+      }
+    }
+  ]
+}

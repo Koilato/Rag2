@@ -1,0 +1,397 @@
+plugin_id,cve,cvss_v2_0_base_score,fingerprint,risk,host,protocol,port,name,synopsis,description,solution,see_also,plugin_output,stig_severity,cvss_v3_0_base_score,cvss_v2_0_temporal_score,cvss_v3_0_temporal_score,risk_factor,bid,xref,mskb,plugin_publication_date,plugin_modification_date,timestamp,is_indexed_to_chroma,id,uuid
+45411,,5.0,056482fc0068c658,Medium,127.0.0.1,tcp,8834,SSL Certificate with Wrong Hostname,The SSL certificate for this service is for a different host.,"The 'commonName' (CN) attribute of the SSL certificate presented for
+this service is for a different machine.",Purchase or generate a proper SSL certificate for this service.,,"
+The identities known by Nessus are :
+
+  ce419ca758b2
+  localhost
+
+The Common Name in the certificate is :
+
+  961861b13a87
+",,5.3,-1.0,-1.0,Medium,,,,2010_04_03,2020_04_27,2025_06_18,,21,BGnjYPqrTrG
+51192,,6.4,7281e1caff071dd0,Medium,127.0.0.1,tcp,8834,SSL Certificate Cannot Be Trusted,The SSL certificate for this service cannot be trusted.,"The server's X.509 certificate cannot be trusted. This situation can
+occur in three different ways, in which the chain of trust can be
+broken, as stated below :
+
+  - First, the top of the certificate chain sent by the
+    server might not be descended from a known public
+    certificate authority. This can occur either when the
+    top of the chain is an unrecognized, self-signed
+    certificate, or when intermediate certificates are
+    missing that would connect the top of the certificate
+    chain to a known public certificate authority.
+
+  - Second, the certificate chain may contain a certificate
+    that is not valid at the time of the scan. This can
+    occur either when the scan occurs before one of the
+    certificate's 'notBefore' dates, or after one of the
+    certificate's 'notAfter' dates.
+
+  - Third, the certificate chain may contain a signature
+    that either didn't match the certificate's information
+    or could not be verified. Bad signatures can be fixed by
+    getting the certificate with the bad signature to be
+    re-signed by its issuer. Signatures that could not be
+    verified are the result of the certificate's issuer
+    using a signing algorithm that Nessus either does not
+    support or does not recognize.
+
+If the remote host is a public host in production, any break in the
+chain makes it more difficult for users to verify the authenticity and 
+identity of the web server. This could make it easier to carry out 
+man-in-the-middle attacks against the remote host.",Purchase or generate a proper SSL certificate for this service.,"https://www.itu.int/rec/T-REC-X.509/en
+https://en.wikipedia.org/wiki/X.509","
+The following certificate was at the top of the certificate
+chain sent by the remote host, but it is signed by an unknown
+certificate authority :
+
+|-Subject : O=Nessus Users United/OU=Nessus Server/L=New York/C=US/ST=NY/CN=961861b13a87
+|-Issuer  : O=Nessus Users United/OU=Nessus Certification Authority/L=New York/C=US/ST=NY/CN=Nessus Certification Authority
+",,6.5,-1.0,-1.0,Medium,,,,2010_12_15,2020_04_27,2025_06_18,,22,X8Pbd5kmFOA
+166600,"CVE-2020-28458,CVE-2021-23445,CVE-2022-2309,CVE-2022-23308,CVE-2022-24785,CVE-2022-29824,CVE-2022-31129,CVE-2022-37434,CVE-2022-40674",7.5,581cefb38e66a535,Critical,127.0.0.1,tcp,0,Tenable Nessus 10.x < 10.3.1 Multiple Vulnerabilities (TNS-2022-20),Tenable Nessus running on the remote host is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is 10.x prior to 
+10.3.1. It is, therefore, affected by multiple vulnerabilities, including:
+
+  - A use-after-free vulnerability in the doContent function in xmlparse.c in libexpat. (CVE-2022-40674)
+
+  - A path traversal vulnerability in the locale string handling functionality of Moment.js. (CVE-2022-24785)
+
+  - A denial of service vulnerability in the string-to-date parsing functinality in Moment.js (CVE-2022-31129)
+
+Note that Nessus has not tested for this issue but has instead relied only on the application's self-reported version   
+number.",Upgrade to Tenable Nessus version 10.3.1 or later.,https://www.tenable.com/security/tns-2022-20,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.3.1
+",I,9.8,6.2,9.1,High,,IAVA:2023-A-0059-S,,2022_10_27,2024_02_16,2025_06_18,,23,6AMrOpoYCRz
+166670,"CVE-2016-10744,CVE-2021-41182,CVE-2021-41183,CVE-2021-41184,CVE-2022-31160,CVE-2022-3498,CVE-2022-3499",4.3,13cfec75e85f9f13,Medium,127.0.0.1,tcp,0,Tenable Nessus 10.x < 10.4.0 Multiple Vulnerabilities (TNS-2022-21),Tenable Nessus running on the remote host is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is 10.x prior to 
+10.4.0. It is, therefore, affected by multiple vulnerabilities, including:
+
+  - An authenticated attacker could utilize the identical agent and cluster node linking keys to potentially allow for a
+    scenario where unauthorized disclosure of agent logs and data is present. (CVE-2022-3499)
+  
+  - An authenticated attacker could modify the client-side behavior to bypass the protection mechanisms resulting in
+    potentially unexpected interactions between the client and server. (CVE-2022-3498)
+
+  - Cross-site scripting in the checkboxradio widget in JQuery UI. (CVE-2022-31160)
+
+Note that Nessus has not tested for this issue but has instead relied only on the application's self-reported version   
+number.",Upgrade to Tenable Nessus version 10.4.0 or later.,https://www.tenable.com/security/tns-2022-21,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.4.0
+",,6.5,3.6,6.0,Medium,,,,2022_10_28,2024_06_13,2025_06_18,,24,6zeqYeLph0z
+166959,"CVE-2022-3602,CVE-2022-3786,CVE-2022-43680",7.8,63274a34a7d3ce02,High,127.0.0.1,tcp,0,Tenable Nessus 10.x < 10.3.2 Multiple Vulnerabilities (TNS-2022-23),Tenable Nessus running on the remote host is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is 10.x prior to 
+10.3.2. It is, therefore, affected by multiple vulnerabilities, including:
+
+  - A buffer overrun can be triggered in X.509 certificate verification, specifically in name constraint checking.
+  (CVE-2022-3786, CVE-2022-3602)
+
+  - In libexpat through 2.4.9, there is a use-after free caused by overeager destruction of a shared DTD in
+    XML_ExternalEntityParserCreate in out-of-memory situations. (CVE-2022-43680)
+
+Note that Nessus has not tested for this issue but has instead relied only on the application's self-reported version   
+number.",Upgrade to Tenable Nessus version 10.3.2 or later.,https://www.tenable.com/security/tns-2022-23,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.3.2
+",I,7.5,6.1,6.7,High,,IAVA:2022-A-0452-S;CEA-ID:CEA-2022-0036,,2022_11_04,2023_10_05,2025_06_18,,25,XA7WMO7NHDA
+170167,CVE-2023-0101,9.0,39a57931b2c2a561,High,127.0.0.1,tcp,0,Tenable Nessus 10.x < 10.4.2 Privilege Escalation (TNS-2023-01),Tenable Nessus running on the remote host is affected by a privilege escalation vulnerability.,"According to its self-reported version, the Tenable Nessus application running on the remote host is 10.x prior to 
+10.4.2. It is, therefore, affected by a privilege escalation vulnerability. An authenticated attacker could potentially 
+execute a specially crafted file to obtain Root or NT AUTHORITY / SYSTEM privileges on the Nessus host.
+
+Note that Nessus has not tested for this issue but has instead relied only on the application's self-reported version   
+number.",Upgrade to Tenable Nessus version 10.4.2 or later.,https://www.tenable.com/security/tns-2023-01,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.4.2
+",I,8.8,7.4,8.2,High,,IAVA:2023-A-0050-S,,2023_01_19,2023_09_21,2025_06_18,,26,DzOV9arOfBA
+172124,"CVE-2019-11358,CVE-2020-11023,CVE-2020-28458,CVE-2020-7656,CVE-2021-23445,CVE-2022-4203,CVE-2022-4304,CVE-2022-4450,CVE-2023-0215,CVE-2023-0216,CVE-2023-0217,CVE-2023-0401",7.5,4a589a25a81ffd40,High,127.0.0.1,tcp,0,Tenable Nessus <= 10.4.2 Multiple Vulnerabilities (TNS-2023-09),Tenable Nessus running on the remote host is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is 10.4.2 or 
+earlier. It is, therefore, affected by multiple vulnerabilities in OpenSSL prior to version 3.0.8, spin.js prior 
+to version 2.3.2, and datatables.net prior to version 1.13.2:
+    
+    - An attacker that had observed a genuine connection between a client and a server could use the flaw to send trial 
+      messages to the server and record the time taken to process them. After a sufficiently large number of messages 
+      the attacker could recover the pre-master secret used for the original connection. (CVE-2022-4304)
+
+    - The function PEM_read_bio_ex() reads a PEM file from a BIO and parses and decodes any header data and the payload 
+      data. Under certain conditions, a double free will occur. This will most likely lead to a crash. (CVE-2022-4450)
+
+    - The public API function BIO_new_NDEF is a helper function used for streaming ASN.1 data via a BIO. Under certain conditions, 
+      the BIO chain is not properly cleaned up and the BIO passed by the caller still retains internal pointers to the previously 
+      freed filter BIO. This will most likely result in a crash. (CVE-2023-0215)
+
+    - An invalid pointer dereference on read can be triggered when an application tries to load malformed PKCS7 data. The result of the 
+      dereference is an application crash which could lead to a denial of service attack. (CVE-2023-0216)
+
+    - An invalid pointer dereference on read can be triggered when an application tries to check a malformed DSA public key by the 
+      EVP_PKEY_public_check() function. This will most likely lead to an application crash. (CVE-2023-0217)
+
+    - A NULL pointer can be dereferenced when signatures are being verified on PKCS7 signed or signedAndEnveloped data. In case the hash 
+      algorithm used for the signature is known to the OpenSSL library but the implementation of the hash algorithm is not available the 
+      digest initialization will fail. (CVE-2023-0401) 
+
+    - A read buffer overrun can be triggered in X.509 certificate verification, specifically in name constraint checking, which
+      might result in a crash which could lead to a denial of service attack. (CVE-2022-4203)
+
+    - All versions of package datatables.net are vulnerable to Prototype Pollution due to an incomplete fix for 
+      https:/snyk.io/vuln/SNYK-JS-DATATABLESNET-598806. (CVE-2020-28458)
+
+    - With the package datatables.net before 1.11.3 if an array is passed to the HTML escape entities function it would not 
+      have its contents escaped. (CVE-2021-23445)
+
+    - jQuery before 3.4.0, as used in Drupal, Backdrop CMS, and other products, mishandles jQuery.extend(true, {}, ...) because of 
+      Object.prototype pollution. If an unsanitized source object contained an enumerable __proto__ property, it could extend the 
+      native Object.prototype. (CVE-2019-11358)
+
+    - In jQuery versions greater than or equal to 1.0.3 and before 3.5.0, passing HTML containing <option> elements from untrusted 
+      sources, even after sanitizing it, to one of jQuery DOM manipulation methods may execute untrusted code. (CVE-2020-11023)
+
+    - jquery prior to 1.9.0 allows Cross-site Scripting attacks via the load method that fails to recognize and remove <script> 
+      HTML tags that contain a whitespace character and trigger execution of the enclosed script logic. (CVE-2020-7656)",Upgrade to Tenable Nessus version 10.5.0 or later.,"https://www.tenable.com/security/tns-2023-09
+http://www.nessus.org/u?8230254d","
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.5.0
+",,7.3,6.2,6.8,High,,CEA-ID:CEA-2021-0025;CEA-ID:CEA-2021-0004;CISA-KNOWN-EXPLOITED:2025/02/13,,2023_03_06,2025_01_24,2025_06_18,,27,5AmvYPVrt2z
+175427,"CVE-2022-29824,CVE-2023-28484,CVE-2023-29469",4.3,67f7bea8a5cb1ad5,Medium,127.0.0.1,tcp,0,Tenable Nessus < 10.5.2 Multiple Vulnerabilities (TNS-2023-20),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.5.2. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2023-20 advisory.
+
+  - Nessus leverages third-party software to help provide underlying functionality. Several of the third-party
+    components (libxml2, libxslt) were found to contain vulnerabilities, and updated versions have been made
+    available by the provider.    Out of caution and in line with best practice, Tenable has opted to upgrade
+    these components to address the potential impact of the issues. Nessus 10.5.2 updates libxml2 to version
+    2.11.1 and libxslt to version 1.1.37 to address the identified vulnerabilities. Tenable has released
+    Nessus 10.5.2 to address these issues. The installation files can be obtained from the Tenable Downloads
+    Portal (https://www.tenable.com/downloads/nessus). (CVE-2022-29824, CVE-2023-28484, CVE-2023-29469)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.5.2 or later.,"http://www.nessus.org/u?41bd64ec
+https://www.tenable.com/security/TNS-2023-20","
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.5.2
+",,6.5,3.6,6.0,Medium,,,,2023_05_12,2024_06_13,2025_06_18,,28,Jz9kM9r3fDG
+177925,"CVE-2023-0465,CVE-2023-0466,CVE-2023-1255,CVE-2023-2650",5.0,5be47b2b8820731c,Medium,127.0.0.1,tcp,0,Tenable Nessus < 10.5.3 Multiple Vulnerabilities (TNS-2023-22),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.5.3. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2023-22 advisory.
+
+  - Nessus leverages third-party software to help provide underlying functionality. One of the third-party
+    components (OpenSSL) was found to contain vulnerabilities, and updated versions have been made available
+    by the provider. Out of caution and in line with best practice, Tenable has opted to upgrade these
+    components to address the potential impact of the issues. Nessus 10.5.3 updates OpenSSL to version 3.0.9
+    to address the identified vulnerabilities. Tenable has released Nessus 10.5.3 to address these issues.
+    The installation files can be obtained from the Tenable Downloads Portal
+    (https://www.tenable.com/downloads/nessus). (CVE-2023-0465, CVE-2023-0466, CVE-2023-1255, CVE-2023-2650)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.5.3 or later.,"http://www.nessus.org/u?48b7ba11
+https://www.tenable.com/security/TNS-2023-22","
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.5.3
+",,5.3,3.7,4.6,Medium,,,,2023_07_04,2024_06_13,2025_06_18,,29,JzdqYPaphj8
+179358,"CVE-2023-3446,CVE-2023-3817",5.0,c7eabe4e8cb22708,Medium,127.0.0.1,tcp,0,Tenable Nessus < 10.5.4 Multiple Vulnerabilities (TNS-2023-27),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.5.4. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2023-27 advisory.
+
+  - Nessus leverages third-party software to help provide underlying functionality. One of the third-party
+    components (OpenSSL) was found to contain vulnerabilities, and updated versions have been made available
+    by the provider. Out of caution and in line with best practice, Tenable has opted to upgrade these
+    components to address the potential impact of the issues. Nessus 10.5.4 updates OpenSSL to version 3.0.10
+    to address the identified vulnerabilities. Tenable has released Nessus 10.5.4 to address these issues.
+    The installation files can be obtained from the Tenable Downloads Portal
+    (https://www.tenable.com/downloads/nessus). (CVE-2023-3446, CVE-2023-3817)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.5.4 or later.,"http://www.nessus.org/u?b1d3eebd
+https://www.tenable.com/security/TNS-2023-27","
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.5.4
+",I,5.3,3.7,4.6,Medium,,IAVA:2023-A-0606-S,,2023_08_04,2024_06_13,2025_06_18,,30,lAN2mv3MTaA
+180253,"CVE-2023-3251,CVE-2023-3252,CVE-2023-3253",7.7,3fd34b2a4416df26,Medium,127.0.0.1,tcp,0,Tenable Nessus < 10.6.0 Multiple Vulnerabilities (TNS-2023-29),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.6.0. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2023-29 advisory.
+
+  - A pass-back vulnerability exists where an authenticated, remote attacker with administrator privileges
+    could uncover stored SMTP credentials within the Nessus application. (CVE-2023-3251)
+    
+  - An arbitrary file write vulnerability exists where an authenticated, remote attacker with administrator privileges
+    could alter logging variables to overwrite arbitrary files on the remote host with log data, which could
+    lead to a denial of service condition. (CVE-2023-3252)
+
+  - An improper authorization vulnerability exists where an authenticated, low privileged remote attacker could 
+    view a list of all the users available in the application. (CVE-2023-3253)
+
+    The installation files can be obtained from the Tenable Downloads Portal
+    (https://www.tenable.com/downloads/nessus). (CVE-2023-3251, CVE-2023-3252, CVE-2023-3253)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.6.0 or later.,"http://www.nessus.org/u?db90e0fd
+https://www.tenable.com/security/TNS-2023-29","
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.6.0
+",I,6.5,5.7,5.7,High,,IAVA:2023-A-0445-S,,2023_08_29,2024_06_13,2025_06_18,,31,Z8ogOPbrSP8
+181786,"CVE-2023-3251,CVE-2023-3252,CVE-2023-3253",7.7,826ec529de8249e8,Medium,127.0.0.1,tcp,0,Tenable Nessus < 10.5.5 Multiple Vulnerabilities (TNS-2023-31),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.5.5. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2023-31 advisory.
+
+  - A pass-back vulnerability exists where an authenticated, remote attacker with administrator privileges
+    could uncover stored SMTP credentials within the Nessus application. (CVE-2023-3251)    
+    
+  - An arbitrary file write vulnerability exists where an authenticated, remote attacker with administrator privileges
+    could alter logging variables to overwrite arbitrary files on the remote host with log data, which could
+    lead to a denial of service condition. (CVE-2023-3252)    
+    
+  - An improper authorization vulnerability exists where an authenticated, low privileged remote attacker could view 
+    a list of all the users available in the application. (CVE-2023-3253)   
+    
+Tenable has released Nessus 10.5.5 to address these issues. The installation files can only be obtained via the Nessus Feed.   
+(CVE-2023-3251, CVE-2023-3252, CVE-2023-3253)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.5.5 or later.,https://www.tenable.com/security/TNS-2023-31,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.5.5
+",,6.5,5.7,5.7,High,,,,2023_09_22,2024_06_13,2025_06_18,,32,RG32My3OTP8
+182230,,-1.0,35d10b5bb89a275f,Low,127.0.0.1,tcp,0,Tenable Nessus SEoL (10.2.x),An unsupported version of Tenable Nessus is installed on the remote host.,"According to its version, Tenable Nessus is 10.2.x. It is, therefore, no longer maintained by its vendor or provider.
+
+Lack of support implies that no new security patches for the product will be released by the vendor. As a result, it may
+contain security vulnerabilities.",Upgrade to a version of Tenable Nessus that is currently supported.,http://www.nessus.org/u?e7570286,"
+  Path                                   : /opt/nessus
+  Installed version                      : 10.2.0
+  Security End of Life                   : December 31, 2023
+  Time since Security End of Life (Est.) : >= 1 year
+",,-1.0,-1.0,-1.0,Low,,,,2023_09_29,2023_11_02,2025_06_18,,33,4GVDx1yVCvz
+184127,"CVE-2023-4807,CVE-2023-5847",6.8,f546d1eb673ac164,High,127.0.0.1,tcp,0,Tenable Nessus < 10.5.6 Multiple Vulnerabilities (TNS-2023-36),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.5.6. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2023-36 advisory.
+
+  - Nessus leverages third-party software to help provide underlying functionality. One of the third-party
+    components (OpenSSL) was found to contain vulnerabilities, and updated versions have been made available
+    by the provider.Out of caution and in line with best practice, Tenable has opted to upgrade these
+    components to address the potential impact of the issues. Nessus 10.5.6 updates OpenSSL to version 3.0.12
+    to address the identified vulnerabilities.Additionally, one other vulnerability was discovered, reported
+    and fixed:Under certain conditions, a low privileged attacker could load a specially crafted file during
+    installation or upgrade to escalate privileges on Windows and Linux hosts. - CVE-2023-5847 Tenable has
+    released Nessus 10.5.6 to address these issues. The installation files can only be obtained via the Nessus
+    Feed. (CVE-2023-4807, CVE-2023-5847)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.5.6 or later.,https://www.tenable.com/security/TNS-2023-36,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.5.6
+",I,7.8,5.0,6.8,Medium,,IAVA:2023-A-0606-S,,2023_11_01,2023_12_01,2025_06_18,,34,vABgJQOYS9z
+184164,"CVE-2023-45853,CVE-2023-4807,CVE-2023-5847",8.3,9818dba465ef7414,High,127.0.0.1,tcp,0,Tenable Nessus < 10.6.2 Multiple Vulnerabilities (TNS-2023-37),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.6.2. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2023-37 advisory.
+
+  - Nessus leverages third-party software to help provide underlying functionality. Several of the third-party
+    components (OpenSSL, zlib) were found to contain vulnerabilities, and updated versions have been made
+    available by the providers.Out of caution and in line with best practice, Tenable has opted to upgrade
+    these components to address the potential impact of the issues. Nessus 10.6.2 updates OpenSSL to version
+    3.0.12, and zlib fixes have been applied to address the identified vulnerabilities.Additionally, one other
+    vulnerability was discovered, reported and fixed:Under certain conditions, a low privileged attacker could
+    load a specially crafted file during installation or upgrade to escalate privileges on Windows and Linux
+    hosts. - CVE-2023-5847 Tenable has released Nessus 10.6.2 to address these issues. The installation files
+    can be obtained from the Tenable Downloads Portal (https://www.tenable.com/downloads/nessus).
+    (CVE-2023-45853, CVE-2023-4807, CVE-2023-5847)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.6.2 or later.,https://www.tenable.com/security/TNS-2023-37,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.6.2
+",I,8.8,6.1,7.7,High,,IAVA:2023-A-0606-S,,2023_11_01,2023_12_06,2025_06_18,,35,wGx7xl6rc68
+186011,CVE-2023-6062,7.7,19160f73a126b7c0,Medium,127.0.0.1,tcp,0,Tenable Nessus < 10.5.7 (TNS-2023-39),An instance of Nessus installed on the remote system is affected by a vulnerability.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.5.7. It
+is, therefore, affected by a vulnerability as referenced in the TNS-2023-39 advisory.
+
+  - An arbitrary file write vulnerability exists where an authenticated, remote attacker with administrator
+    privileges on the Nessus application could alter Nessus Rules variables to overwrite arbitrary files on
+    the remote host, which could lead to a denial of service condition. Tenable has released Nessus
+    10.5.7 to address these issues. The installation files can only be obtained via the Nessus Feed.
+    (CVE-2023-6062)
+
+Note that Nessus has not tested for this issue but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.5.7 or later.,https://www.tenable.com/security/TNS-2023-39,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.5.7
+",I,6.5,5.7,5.7,High,,IAVA:2023-A-0651-S,,2023_11_20,2024_06_13,2025_06_18,,36,mA0JM53lCK8
+190097,"CVE-2024-0955,CVE-2024-0971",6.8,c92e64c23eba3c8b,Medium,127.0.0.1,tcp,0,Tenable Nessus < 10.7.0 Multiple Vulnerabilities (TNS-2024-01),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.7.0. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2024-01 advisory.
+
+  - A stored XSS vulnerability exists where an authenticated, remote attacker with administrator privileges
+    on the Nessus application could alter Nessus proxy settings, which could lead to the execution of remote
+    arbitrary scripts. (CVE-2024-0955)
+
+  - A SQL injection vulnerability exists where an authenticated, low-privileged remote attacker could potentially
+    alter scan DB content. (CVE-2024-0971)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.7.0 or later.,https://www.tenable.com/security/TNS-2024-01,"
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.7.0
+",I,6.5,5.3,5.9,Medium,,IAVA:2024-A-0072-S,,2024_02_07,2024_06_13,2025_06_18,,37,x8QrNgW9CpG
+201456,,10.0,c220e89df3a6c69b,Critical,127.0.0.1,tcp,0,Canonical Ubuntu Linux SEoL (18.04.x),An unsupported version of Canonical Ubuntu Linux is installed on the remote host.,"According to its version, Canonical Ubuntu Linux is 18.04.x. It is, therefore, no longer maintained by its vendor or
+provider.
+
+Lack of support implies that no new security patches for the product will be released by the vendor. As a result, it may
+contain security vulnerabilities.",Upgrade to a version of Canonical Ubuntu Linux that is currently supported.,https://ubuntu.com/blog/18-04-end-of-standard-support,"
+  OS                                     : Canonical Ubuntu Linux 18.04.6 LTS (Bionic Beaver)
+  Security End of Life                   : May 31, 2023
+  Time since Security End of Life (Est.) : >= 1 year
+",,10.0,-1.0,-1.0,Critical,,,,2024_07_03,2025_03_26,2025_06_18,,38,gzkwYPbrcjz
+207062,"CVE-2024-45491,CVE-2024-45492,CVE-2024-6119",10.0,c5b6ace552ae7e44,Critical,127.0.0.1,tcp,0,Tenable Nessus < 10.8.3 Multiple Vulnerabilities (TNS-2024-15 & TNS-2024-16),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.8.3. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2024-15 and TNS-2024-16 advisories.
+
+  - Nessus leverages third-party software to help provide underlying functionality. Several of the third-party
+    components (OpenSSL, expat) were found to contain vulnerabilities, and updated versions have been made
+    available by the providers.Out of caution and in line with best practice, Tenable has opted to upgrade
+    these components to address the potential impact of the issues. Nessus Version 10.8.3 updates OpenSSL to
+    version 3.0.15 and expat to version 2.6.3 to address the identified vulnerabilities. Tenable has released
+    Nessus 10.8.3 to address these issues. The installation files can be obtained from the Tenable Downloads
+    Portal: https://www.tenable.com/downloads/nessus (CVE-2024-45491, CVE-2024-45492, CVE-2024-6119)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.8.3 or later.,"https://docs.tenable.com/release-notes/Content/nessus/2024.htm?
+https://www.tenable.com/security/TNS-2024-16
+https://www.tenable.com/security/TNS-2024-15","
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.7.6 / 10.8.3
+",,9.8,7.4,8.5,Critical,,,,2024_09_12,2024_09_12,2025_06_18,,39,r8WY0P3Bc5A
+234837,"CVE-2024-40896,CVE-2024-50602,CVE-2024-56171,CVE-2024-8176,CVE-2025-24928,CVE-2025-27113,CVE-2025-36625",7.8,9199b5a00c606f9c,High,127.0.0.1,tcp,0,Tenable Nessus < 10.8.4 Multiple Vulnerabilities (TNS-2025-05),An instance of Nessus installed on the remote system is affected by multiple vulnerabilities.,"According to its self-reported version, the Tenable Nessus application running on the remote host is prior to 10.8.4. It
+is, therefore, affected by multiple vulnerabilities as referenced in the TNS-2025-05 advisory.
+
+  - libxml2 before 2.12.10 and 2.13.x before 2.13.6 has a NULL pointer dereference in xmlPatMatch in
+    pattern.c. (CVE-2025-27113)
+
+  - In libxml2 2.11 before 2.11.9, 2.12 before 2.12.9, and 2.13 before 2.13.3, the SAX parser can produce
+    events for external entities even if custom SAX handlers try to override entity content (by setting
+    checked). This makes classic XXE attacks possible. (CVE-2024-40896)
+
+  - An issue was discovered in libexpat before 2.6.4. There is a crash within the XML_ResumeParser function
+    because XML_StopParser can stop/suspend an unstarted parser. (CVE-2024-50602)
+
+  - libxml2 before 2.12.10 and 2.13.x before 2.13.6 has a use-after-free in xmlSchemaIDCFillNodeTables and
+    xmlSchemaBubbleIDCNodeTables in xmlschemas.c. To exploit this, a crafted XML document must be validated
+    against an XML schema with certain identity constraints, or a crafted XML schema must be used.
+    (CVE-2024-56171)
+
+  - A stack overflow vulnerability exists in the libexpat library due to the way it handles recursive entity
+    expansion in XML documents. When parsing an XML document with deeply nested entity references, libexpat
+    can be forced to recurse indefinitely, exhausting the stack space and causing a crash. This issue could
+    lead to denial of service (DoS) or, in some cases, exploitable memory corruption, depending on the
+    environment and library usage. (CVE-2024-8176)
+
+  - libxml2 before 2.12.10 and 2.13.x before 2.13.6 has a stack-based buffer overflow in xmlSnprintfElements
+    in valid.c. To exploit this, DTD validation must occur for an untrusted document or untrusted DTD. NOTE:
+    this is similar to CVE-2017-9047. (CVE-2025-24928)
+
+Note that Nessus has not tested for these issues but has instead relied only on the application's self-reported version
+number.",Upgrade to Tenable Nessus 10.8.4 or later.,"https://docs.tenable.com/release-notes/Content/nessus/2025.htm#10.8.4
+https://www.tenable.com/security/TNS-2025-05","
+  Path              : /opt/nessus
+  Installed version : 10.2.0
+  Fixed version     : 10.8.4
+",I,7.5,6.1,6.7,High,,IAVA:2025-A-0294,,2025_04_25,2025_04_25,2025_06_18,,40,K86kM1rdfvG
