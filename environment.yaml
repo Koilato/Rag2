@@ -1,0 +1,38 @@
+# environment.yaml
+name: rag2_project
+channels:
+  - defaults
+dependencies:
+  # Backend Python Dependencies
+  - python=3.9 # 或者您项目实际使用的Python版本
+  - pip
+  - pip:
+    - fastapi==0.115.14
+    - pydantic==2.11.7
+    - pandas==2.3.0
+    - python-docx==1.2.0
+    - chromadb==1.0.15
+    - python-dotenv==1.1.1
+    - pymysql==1.1.1
+    - numpy==2.3.1
+    - xxhash==3.5.0
+    - hashids==1.3.1
+    - openai==1.93.0
+    - python-multipart==0.0.20
+    - uvicorn==0.35.0
+
+  # Frontend Node.js Dependencies (for npm)
+  # 注意：Conda 无法直接管理 npm 包，这里仅作说明
+  # 您需要单独安装 Node.js 和 npm，然后进入 frontend 目录运行 npm install
+  - nodejs # Conda 可以安装 Node.js
+  - npm # Conda 可以安装 npm
+  # 以下是 frontend/package.json 中的依赖
+  # 您需要在 frontend 目录下运行 'npm install' 来安装这些
+  # dependencies:
+  #   axios: "^1.10.0"
+  #   marked: "^16.0.0"
+  #   vue: "^3.5.17"
+  # devDependencies:
+  #   @vitejs/plugin-vue: "^6.0.0"
+  #   vite: "^7.0.0"
+  #   vite-plugin-vue-devtools: "^7.7.7"
