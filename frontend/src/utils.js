@@ -6,7 +6,7 @@ import axios from 'axios'; // 确保您的Vue项目已安装axios (npm install a
  * 处理文件上传逻辑。
  * 提供必要的引用（ref）和函数，用于触发文件输入并处理选定的文件。
  */
-export function useFileUpload() {
+export function useFileUpload(username) {
   const fileInput = ref(null);
   const uploadStatus = ref(''); // 用于显示上传状态
 
@@ -19,21 +19,27 @@ export function useFileUpload() {
   const handleFileSelected = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      console.log('通过组合式函数选择的文件:', file.name);
+      if (!username.value) {
+        uploadStatus.value = '错误：用户名丢失，无法上传。';
+        console.error('Username is not available for file upload.');
+        return;
+      }
+      
+      console.log(`通过组合式函数选择的文件: ${file.name}，用户: ${username.value}`);
       uploadStatus.value = '正在上传...';
 
       const formData = new FormData();
-      formData.append('file', file); // 'file' 必须与后端FastAPI的参数名一致
+      formData.append('file', file);
+      formData.append('username', username.value); // 添加用户名到表单数据
 
       try {
         const response = await axios.post('http://localhost:8000/api/upload_csv', formData, {
           headers: {
-            'Content-Type': 'multipart/form-data', // 必须设置此头部
+            'Content-Type': 'multipart/form-data',
           },
         });
         console.log('文件上传成功:', response.data);
-        uploadStatus.value = `上传成功: ${response.data.filename}`;
-        // 可以在这里添加成功后的逻辑，例如刷新数据列表
+        uploadStatus.value = `上传成功: ${file.name}`;
       } catch (error) {
         console.error('文件上传失败:', error.response ? error.response.data : error.message);
         uploadStatus.value = `上传失败: ${error.response ? error.response.data.detail : error.message}`;

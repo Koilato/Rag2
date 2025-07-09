@@ -167,38 +167,42 @@ async def login(request: LoginRequest):
         raise HTTPException(status_code=500, detail=f"An error occurred: {e}")
 
 @app.post("/api/upload_csv")
-async def upload_csv(
-        db_name: str = Form(...),
-        table_name: str = Form(...),
-        collection_name: str = Form(...),
-        file: UploadFile = File(...)
-):
+async def upload_csv(username: str = Form(...), file: UploadFile = File(...)):
     """
-    Receives an uploaded CSV file, processes it, and stores it in the specified
-    MySQL database/table and ChromaDB collection.
+    Receives a user's CSV file, processes it, and stores it based on username and date.
+    - MySQL database name is the username.
+    - MySQL table name is the current date (YYYY-MM-DD).
+    - ChromaDB collection name is the username.
     """
     if not file.filename.endswith('.csv'):
         raise HTTPException(status_code=400, detail="Only CSV files are accepted.")
 
     try:
+        # Define names based on username and current date
+        db_name = username
+        collection_name = username
+        table_name = utils.get_today_date_formatted()
+
+        # Read and process the CSV file
         contents = await file.read()
         sio = io.StringIO(contents.decode('utf-8'))
         pdfile = CsvDataOp.transform_nessus_data(sio)
 
         if pdfile.empty:
-            raise HTTPException(status_code=400, detail="Processed CSV file is empty.")
+            raise HTTPException(status_code=400, detail="Processed CSV file is empty or invalid.")
 
-        # Create database and table
+        # Ensure MySQL database and table exist
         MySqlSource.create_database(mysql_connect, db_name)
         MySqlSource.create_pd_table(mysql_connect, db_name, table_name, use_vulnerability_template=True)
 
-        # Add IDs and UUIDs
+        # Add unique IDs for tracking
         pdfile = utils.add_ids_and_uuid(mysql_connect, db_name, pdfile, table_name)
 
-        # Insert data into MySQL
+        # Insert data into the newly created MySQL table
         MySqlSource.insert_vulnerability_data(mysql_connect, db_name, table_name, pdfile)
 
         # Sync data from MySQL to ChromaDB
+        # Note: Assumes sync_mysql_to_chromadb is modified to add 'creation_date' to metadata
         MySqlSource.sync_mysql_to_chromadb(
             connection=mysql_connect,
             chroma_client=chroma_client,
@@ -210,14 +214,16 @@ async def upload_csv(
 
         return JSONResponse(
             content={
-                "message": f"File {file.filename} processed and stored successfully!",
+                "message": f"File '{file.filename}' processed and stored successfully.",
                 "database": db_name,
                 "table": table_name,
                 "collection": collection_name
             }
         )
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"File processing failed: {e}")
+        # Log the full error for debugging
+        print(f"Error in upload_csv: {e}")
+        raise HTTPException(status_code=500, detail=f"File processing failed: {str(e)}")
 
 @app.post("/api/process_data")
 async def process_data(request: ProcessDataRequest):

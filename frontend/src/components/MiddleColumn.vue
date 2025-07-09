@@ -75,6 +75,7 @@
 
 <script setup>
 import { useFileUpload } from '../utils.js';
+import { toRefs } from 'vue';
 
 const props = defineProps({
   isMiddleCollapsed: Boolean,
@@ -85,6 +86,7 @@ const props = defineProps({
   endTime: String,
   autoExportEnabled: Boolean,
   onlineSearchEnabled: Boolean,
+  username: String, // Add username prop
   // Props for currently unused fields, can be added later
   plugin_id: String,
   risk: String,
@@ -105,7 +107,8 @@ const emit = defineEmits([
 ]);
 
 // Use the file upload composable
-const { fileInput, triggerFileUpload, handleFileSelected } = useFileUpload();
+const { username } = toRefs(props);
+const { fileInput, triggerFileUpload, handleFileSelected } = useFileUpload(username);
 
 // No longer need defineExpose as state is managed by the parent
 </script>
