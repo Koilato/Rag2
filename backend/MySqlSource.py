@@ -18,9 +18,11 @@ def connect_to_mysql(db_name=None):
     - 确保配置项类型正确 (如 port 为整数)。
     """
     config_parser = configparser.ConfigParser()
+    script_dir = os.path.dirname(__file__)
+    config_path = os.path.join(script_dir, 'config.ini')
 
-    if not config_parser.read('config.ini'):
-        print("错误: 找不到或无法读取 config.ini 文件。")
+    if not config_parser.read(config_path):
+        print(f"错误: 找不到或无法读取 config.ini 文件于: {config_path}")
         return None
 
     try:

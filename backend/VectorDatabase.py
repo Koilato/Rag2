@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 def load_mysql_config(config_path='config.ini'):
     load_dotenv()
     config = configparser.ConfigParser()
+    script_dir = os.path.dirname(__file__)
+    config_path = os.path.join(script_dir, config_path)
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"错误: 配置文件 '{config_path}' 不存在。请创建它并包含数据库配置。")
 
@@ -37,6 +39,8 @@ def load_chroma_config(config_path='config.ini'):
     load_dotenv()
 
     config = configparser.ConfigParser()
+    script_dir = os.path.dirname(__file__)
+    config_path = os.path.join(script_dir, config_path)
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"错误: 配置文件 '{config_path}' 不存在。请创建它并包含数据库配置。")
 

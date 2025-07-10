@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Add the current directory to the Python path for module imports
+sys.path.append(os.path.dirname(__file__))
+
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,8 +27,9 @@ app = FastAPI()
 # 配置CORS，允许Vue前端访问
 origins = [
     "http://localhost",
-    "http://localhost:8080",  # 您的Vue前端可能运行的地址
+    "http://localhost:8080",
     "http://127.0.0.1:8080",
+    "http://localhost:5174", # Add the Vite development server origin
     # 如果您的前端部署在其他域名，请在此处添加
 ]
 
@@ -142,7 +149,9 @@ async def export_report(request: ProcessDataRequest):
 @app.post("/api/login")
 async def login(request: LoginRequest):
     try:
-        with open("backend/users.json", "r") as f:
+        users_file_path = os.path.join(os.path.dirname(__file__), "users.json")
+        print(f"Attempting to open users file at: {users_file_path}")
+        with open(users_file_path, "r") as f:
             users = json.load(f)
 
         if request.username in users and users[request.username] == request.password:
